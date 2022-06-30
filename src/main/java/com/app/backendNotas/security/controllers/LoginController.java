@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,22 +36,6 @@ public class LoginController {
 	private JwtUtilService jwtUtilService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);//Para ver en /testeo por la consola
-	
-	
-	@GetMapping("/testeo")
-	public ResponseEntity<?> getMensaje() {
-		
-		//Lee el SecurityContextHolder, obtiene el contexto y la authentication y pasa esos datos x consola
-		var auth =  SecurityContextHolder.getContext().getAuthentication(); 
-	    logger.info("Datos del Usuario: {}", auth.getPrincipal()); 
-	    logger.info("Datos de los Permisos {}", auth.getAuthorities());
-	    logger.info("Esta autenticado {}", auth.isAuthenticated());
-		
-		Map<String, String> mensaje = new HashMap<>();
-		mensaje.put("contenido", "Hola Mundo");
-		return ResponseEntity.ok(mensaje);
-	}
-	
 	
 	@PostMapping("/login")
 	public ResponseEntity<TokenInfo> authenticate(@RequestBody Login authenticationReq) {
