@@ -3,6 +3,7 @@ package com.app.backendNotas.security.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,6 +40,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		http.csrf().disable()
+			.authorizeRequests()
+			.antMatchers(HttpMethod.DELETE, "/notas/{id}").hasRole("ADMIN") // ADMIN es capaz de borrar notas
+			.antMatchers(HttpMethod.PUT, "/notas/{id}").hasRole("ADMIN") // ADMIN es capaz de editar notas
+			.antMatchers(HttpMethod.POST, "/notas").hasAnyRole("ADMIN", "USER") //ADMIN o USER pueden agregar notas  ADMIN.name(),USER.name()
+			.antMatchers("/admin/**").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/notas/**").permitAll()
+			.antMatchers("/login").permitAll()
+			.antMatchers("/testeo").permitAll()
+			.anyRequest().authenticated()
+			.and().cors()
+			.and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		/*
 		http.csrf().disable()
 			.authorizeRequests() 
 			.antMatchers("/notas/**").permitAll()
@@ -49,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().cors()
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		
+		*/
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		
 	}
