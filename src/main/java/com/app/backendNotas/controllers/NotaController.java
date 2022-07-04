@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.backendNotas.models.Nota;
 import com.app.backendNotas.services.NotaService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200") // http://localhost:4200
 @RestController
 public class NotaController {
 	
