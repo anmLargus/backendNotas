@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,6 +46,17 @@ public class TestController {
 		Map<String, String> mensaje = new HashMap<>();
 		mensaje.put("contenido", "Hola ADMIN");
 		return ResponseEntity.ok(mensaje);		
+	}
+	
+	@RequestMapping("/welcome")
+	public String welcome() {
+		return "Bienvenido al backend del Block de Notas 2";
+	}
+	
+	@GetMapping("/welcome/{nn}")
+	public String ok(@PathVariable String nn) {
+		
+		return "¡Hola " + nn + " desde el backend! Está todo OK!";
 	}
 	
 }

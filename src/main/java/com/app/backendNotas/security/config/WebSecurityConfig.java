@@ -50,6 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/notas/**").permitAll()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/testeo").permitAll()
+			.antMatchers("/encode/**").permitAll()
+			.antMatchers("/welcome/**").permitAll()
 			.anyRequest().authenticated()
 			.and().cors()
 			.and()
