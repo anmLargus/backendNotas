@@ -21,8 +21,8 @@ public class UsuarioDetailsService implements UserDetailsService {
 		if (rol != null) {
 			User.UserBuilder userBuilder = User.withUsername(username);
 			// "secreto" => [BCrypt] => $2a$10$56VCAiApLO8NQYeOPiu2De/EBC5RWrTZvLl7uoeC3r7iXinRR1iiq
-			// "Usuario1" => [BCrypt] => $2a$10$nIqTMX7MSEY4cNhqOBoahuMsMW2Y9MAmmU8qAfxkIO5b237dZ/bBy
-			String encryptedPassword = "$2a$10$nIqTMX7MSEY4cNhqOBoahuMsMW2Y9MAmmU8qAfxkIO5b237dZ/bBy";
+			// "Usuario01" => [BCrypt] => $2a$10$PPRj2W3m3mkGwHQQ.V5nL.gbDcmHGUulVemn/DwqcqevgDpoZmgVa
+			String encryptedPassword = "$2a$10$PPRj2W3m3mkGwHQQ.V5nL.gbDcmHGUulVemn/DwqcqevgDpoZmgVa";
 			userBuilder.password(encryptedPassword).roles(rol);
 			return userBuilder.build();
 		} else {

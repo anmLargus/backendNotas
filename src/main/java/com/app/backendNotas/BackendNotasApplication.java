@@ -10,7 +10,7 @@ public class BackendNotasApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendNotasApplication.class, args);
-		/*
+		/* CODIGO PARA GENERAR RAPIDAMENTE UNA ENCRIPTACION CON BCRYPT
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String password = "Usuario1";
 		String encodedPassword = passwordEncoder.encode(password);

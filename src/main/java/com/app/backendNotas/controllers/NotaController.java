@@ -31,17 +31,27 @@ public class NotaController {
 	}
 	
 	@GetMapping("/notas/{id}")
-	public Nota getOne(@PathVariable int id) {
-		
-		return notaService.traerUno(id);
-			
-
+	public ResponseEntity<Nota> getOne(@PathVariable int id) {
+		try {
+			Nota nota = notaService.traerUno(id);
+			return new ResponseEntity<Nota>(nota, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Nota>(HttpStatus.NOT_FOUND); 
+			// en realidad la excepcion no se lanzaria, xq en el servicio si no lo encuentra generauna nueva nota			
+		}
 	}
 	
 	@PostMapping("/notas")
 	public boolean create(@RequestBody Nota n) {
 		return notaService.crear(n);
 	}
+	/*
+	 * @PostMapping("/notas")
+	 * public void create(@RequestBody Nota n) {
+	 * 		notaService.crear(n);
+	 * 
+	 */
+	
 	
 	@PutMapping("/notas/{id}")
 	public ResponseEntity<?> update(@RequestBody Nota n, @PathVariable int id){

@@ -57,7 +57,6 @@ public class TestController {
 	public String ok(@PathVariable String nn) {
 		
 		return "¡Hola " + nn + " desde el backend! Está todo OK!";
-	}
-	
+	}	
 }
 

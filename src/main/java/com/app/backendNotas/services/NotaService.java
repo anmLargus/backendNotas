@@ -23,7 +23,7 @@ public class NotaService implements ICrudService<Nota> {
 	@Override
 	public Nota traerUno(long id) {
 		// TODO Auto-generated method stub
-		return notaRepo.findById(id).orElse(new Nota());
+		return notaRepo.findById(id).orElse(new Nota()); //si no encuentra, genera una nueva nota
 	}
 
 	@Override
